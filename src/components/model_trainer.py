@@ -24,7 +24,7 @@ from src.utils import save_object, evaluate_model
 
 @dataclass
 class ModelTrainerConfig:
-    trained_model_file_path = os.path.join('artifacts', 'model.pkl')
+    trained_model_file_path = os.path.join('artifact', 'model.pkl')
     
 class ModelTrainer:
     def __init__(self):
@@ -65,7 +65,7 @@ class ModelTrainer:
             best_model = models[best_model_name]
             
             if best_model_score < 0.6:
-                raise CustomException("No best model found")
+                raise CustomException("No best model found", sys)
             logging.info(f"Best found model on both training and testing dataset is {best_model_name} with r2 score: {best_model_score}")
             
             save_object(
